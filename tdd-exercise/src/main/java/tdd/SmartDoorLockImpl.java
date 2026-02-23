@@ -5,9 +5,11 @@ public class SmartDoorLockImpl implements SmartDoorLock{
     private int pin;
     private enum State{Open, Locked, Blocked}
     private State state;
+    private int maxAttempts;
 
-    public SmartDoorLockImpl () {
+    public SmartDoorLockImpl (int maxAttempts) {
         this.state = State.Open;
+        this.maxAttempts = maxAttempts;
     }
 
     @Override
@@ -22,13 +24,10 @@ public class SmartDoorLockImpl implements SmartDoorLock{
 
     @Override
     public void lock() {
-        try {
-            if (this.pin!=0) {
-                this.state = State.Locked;
-            }
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
+        if (this.pin==0) {
+            throw new IllegalStateException("Pin not set");
         }
+        this.state = State.Locked;
     }
 
     @Override
@@ -43,7 +42,7 @@ public class SmartDoorLockImpl implements SmartDoorLock{
 
     @Override
     public int getMaxAttempts() {
-        return 0;
+        return this.maxAttempts;
     }
 
     @Override

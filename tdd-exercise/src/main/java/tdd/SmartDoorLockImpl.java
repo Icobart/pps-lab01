@@ -5,11 +5,13 @@ public class SmartDoorLockImpl implements SmartDoorLock{
     private int pin;
     private enum State{Open, Locked, Blocked}
     private State state;
-    private int maxAttempts;
+    private final int maxAttempts;
+    private int failedAttempts;
 
-    public SmartDoorLockImpl (int maxAttempts) {
+    public SmartDoorLockImpl (int maxAttempts, int failedAttempts) {
         this.state = State.Open;
         this.maxAttempts = maxAttempts;
+        this.failedAttempts = failedAttempts;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class SmartDoorLockImpl implements SmartDoorLock{
 
     @Override
     public int getFailedAttempts() {
-        return 0;
+        return this.failedAttempts;
     }
 
     @Override

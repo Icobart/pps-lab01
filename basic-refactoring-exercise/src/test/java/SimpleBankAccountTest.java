@@ -1,5 +1,6 @@
 import example.model.AccountHolder;
 import example.model.BankAccount;
+import example.model.FeeBankAccount;
 import example.model.SimpleBankAccount;
 
 import org.junit.jupiter.api.*;
@@ -16,11 +17,13 @@ class SimpleBankAccountTest {
     public static final int USER_ID = 1;
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
+    private BankAccount bankAccountWithFee;
 
     @BeforeEach
     void beforeEach(){
         accountHolder = new AccountHolder("Mario", "Rossi", USER_ID);
         bankAccount = new SimpleBankAccount(accountHolder, DEFAULT_BALANCE);
+        bankAccountWithFee = new FeeBankAccount(accountHolder, DEFAULT_BALANCE);
     }
 
     @Test
@@ -46,9 +49,18 @@ class SimpleBankAccountTest {
     void testWithdraw() {
         bankAccount.deposit(accountHolder.id(), DEFAULT_DEPOSIT);
         double withdrawAmount = 70;
-        double expectedAmount = 29;
+        double expectedAmount = 30;
         bankAccount.withdraw(accountHolder.id(), withdrawAmount);
         assertEquals(expectedAmount, bankAccount.getBalance());
+    }
+
+    @Test
+    void testWithdrawWithFee() {
+        bankAccountWithFee.deposit(accountHolder.id(), DEFAULT_DEPOSIT);
+        double withdrawAmount = 70;
+        double expectedAmount = 29;
+        bankAccountWithFee.withdraw(accountHolder.id(), withdrawAmount);
+        assertEquals(expectedAmount, bankAccountWithFee.getBalance());
     }
 
     @Test

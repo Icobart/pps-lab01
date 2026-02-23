@@ -73,6 +73,19 @@ public class SmartDoorLockTest {
     }
 
     @Test
+    public void testSmartDoorLockShouldUnlockAfterNAttempts() {
+        smartDoorLock.setPin(CORRECT_PIN);
+        smartDoorLock.lock();
+        for (int i = INITIAL_FAILED_ATTEMPTS; i <= MAX_ATTEMPTS; i++) {
+            if (i == MAX_ATTEMPTS/2) {
+                smartDoorLock.unlock(CORRECT_PIN);
+            }
+            smartDoorLock.unlock(WRONG_PIN);
+        }
+        assertFalse(smartDoorLock.isLocked() || smartDoorLock.isBlocked());
+    }
+
+    @Test
     public void testResetSmartDoorLockIfBlocked() {
         smartDoorLock.setPin(CORRECT_PIN);
         smartDoorLock.lock();

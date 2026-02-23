@@ -61,6 +61,8 @@ public class SmartDoorLockImpl implements SmartDoorLock{
 
     @Override
     public void reset() {
-
+        this.state = State.Open;
+        this.pin = 0;
+        this.failedAttempts = 0;
     }
 }

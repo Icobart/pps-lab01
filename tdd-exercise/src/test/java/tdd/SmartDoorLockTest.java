@@ -29,7 +29,7 @@ public class SmartDoorLockTest {
 
     @Test
     public void testisOpen() {
-        assertFalse(smartDoorLock.isBlocked() && smartDoorLock.isLocked());
+        assertFalse(smartDoorLock.isBlocked() || smartDoorLock.isLocked());
     }
 
     @Test
@@ -69,6 +69,18 @@ public class SmartDoorLockTest {
         smartDoorLock.setPin(CORRECT_PIN);
         smartDoorLock.lock();
         smartDoorLock.unlock(CORRECT_PIN);
-        assertFalse(smartDoorLock.isLocked() && smartDoorLock.isBlocked());
+        assertFalse(smartDoorLock.isLocked() || smartDoorLock.isBlocked());
+    }
+
+    @Test
+    public void testResetSmartDoorLockIfBlocked() {
+        smartDoorLock.setPin(CORRECT_PIN);
+        smartDoorLock.lock();
+        for (int i = INITIAL_FAILED_ATTEMPTS; i <= MAX_ATTEMPTS; i++) {
+            smartDoorLock.unlock(WRONG_PIN);
+        }
+        smartDoorLock.reset();
+        assertFalse(smartDoorLock.isLocked() || smartDoorLock.isBlocked());
+        assertEquals(INITIAL_FAILED_ATTEMPTS, smartDoorLock.getFailedAttempts());
     }
 }

@@ -21,7 +21,14 @@ public class SmartDoorLockImpl implements SmartDoorLock{
 
     @Override
     public void unlock(int pin) {
-
+        if (this.pin == pin) {
+            this.state = State.Open;
+        } else {
+            if (this.failedAttempts == this.maxAttempts) {
+                this.state = State.Blocked;
+            }
+            this.failedAttempts += 1;
+        }
     }
 
     @Override
@@ -39,7 +46,7 @@ public class SmartDoorLockImpl implements SmartDoorLock{
 
     @Override
     public boolean isBlocked() {
-        return false;
+        return this.state.equals(State.Blocked);
     }
 
     @Override

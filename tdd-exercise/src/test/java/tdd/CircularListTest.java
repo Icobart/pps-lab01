@@ -33,4 +33,9 @@ public class CircularListTest {
         circularQueue.dequeue();
         assertEquals(5, circularQueue.getFirstElement());
     }
+
+    @Test
+    public void testThrowExceptionIfDequeueWhileEmpty() {
+        assertThrows(IllegalStateException.class, () -> circularQueue.dequeue());
+    }
 }

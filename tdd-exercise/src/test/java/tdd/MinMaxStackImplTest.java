@@ -70,4 +70,9 @@ class MinMaxStackImplTest {
     public void testGetMinFromEmptyStack() {
         assertThrows(IllegalStateException.class, () -> minMaxStack.getMin());
     }
+
+    @Test
+    public void testGetMaxFromEmptyStack() {
+        assertThrows(IllegalStateException.class, () -> minMaxStack.getMax());
+    }
 }

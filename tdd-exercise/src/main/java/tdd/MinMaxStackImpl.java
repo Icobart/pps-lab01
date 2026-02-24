@@ -18,15 +18,20 @@ public class MinMaxStackImpl implements MinMaxStack{
 
     @Override
     public int pop() {
+        checkException();
         return this.stack.pop();
     }
 
     @Override
     public int peek() {
+        checkException();
+        return this.stack.getFirst();
+    }
+
+    private void checkException() {
         if (stack.isEmpty()) {
             throw new IllegalStateException("Empty Stack");
         }
-        return this.stack.getFirst();
     }
 
     @Override

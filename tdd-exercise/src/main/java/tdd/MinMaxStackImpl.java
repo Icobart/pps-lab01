@@ -5,7 +5,8 @@ import java.util.Deque;
 
 public class MinMaxStackImpl implements MinMaxStack{
 
-    private Deque<Integer> stack;
+    private record Node(int element, int currentMin, int currentMax){}
+    private Deque<Node> stack;
 
     public MinMaxStackImpl() {
         this.stack = new ArrayDeque<>();
@@ -13,19 +14,26 @@ public class MinMaxStackImpl implements MinMaxStack{
 
     @Override
     public void push(int value) {
-        this.stack.push(value);
+        if (stack.isEmpty()) {
+            this.stack.push(new Node(value, value, value));
+        } else {
+            Node top = stack.peek();
+            int newMin = Math.min(top.currentMin(), value);
+            int newMax = Math.max(top.currentMax(), value);
+            this.stack.push(new Node(value, newMin, newMax));
+        }
     }
 
     @Override
     public int pop() {
         checkException();
-        return this.stack.pop();
+        return this.stack.pop().element();
     }
 
     @Override
     public int peek() {
         checkException();
-        return this.stack.getFirst();
+        return this.stack.getFirst().element();
     }
 
     private void checkException() {
@@ -36,7 +44,8 @@ public class MinMaxStackImpl implements MinMaxStack{
 
     @Override
     public int getMin() {
-        return 0;
+        checkException();
+        return this.stack.peek().currentMin();
     }
 
     @Override

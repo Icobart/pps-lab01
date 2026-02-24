@@ -15,6 +15,9 @@ public class CircularQueueImpl implements CircularQueue{
 
     @Override
     public void enqueue(int value) {
+        if (this.isFull()) {
+            this.dequeue();
+        }
         this.queue.add(value);
     }
 
@@ -39,5 +42,10 @@ public class CircularQueueImpl implements CircularQueue{
     @Override
     public boolean isEmpty() {
         return this.queue.isEmpty();
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.queue.size() == this.size;
     }
 }

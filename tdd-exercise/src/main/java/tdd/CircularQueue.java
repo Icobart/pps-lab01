@@ -24,4 +24,6 @@ public interface CircularQueue {
     int getFirstElement();
 
     boolean isEmpty();
+
+    boolean isFull();
 }

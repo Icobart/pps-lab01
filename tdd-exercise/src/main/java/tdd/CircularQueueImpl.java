@@ -6,11 +6,11 @@ import java.util.List;
 public class CircularQueueImpl implements CircularQueue{
 
     private List<Integer> queue;
-    private final int size;
+    private final int capacity;
 
-    public CircularQueueImpl(int size) {
+    public CircularQueueImpl(int capacity) {
         this.queue = new LinkedList<>();
-        this.size = size;
+        this.capacity = capacity;
     }
 
     @Override
@@ -52,6 +52,6 @@ public class CircularQueueImpl implements CircularQueue{
 
     @Override
     public boolean isFull() {
-        return this.queue.size() == this.size;
+        return this.queue.size() == this.capacity;
     }
 }

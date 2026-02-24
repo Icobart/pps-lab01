@@ -23,19 +23,25 @@ public class CircularQueueImpl implements CircularQueue{
 
     @Override
     public int dequeue() {
+        checkException();
+        return this.queue.removeFirst();
+    }
+
+    private void checkException() {
         if (this.isEmpty()) {
             throw new IllegalStateException("Empty Queue");
         }
-        return this.queue.removeFirst();
     }
 
     @Override
     public int getLastElement() {
+        checkException();
         return this.queue.getLast();
     }
 
     @Override
     public int getFirstElement() {
+        checkException();
         return this.queue.getFirst();
     }
 

@@ -49,4 +49,14 @@ public class CircularListTest {
         assertEquals(3, circularQueue.getFirstElement());
         assertEquals(7, circularQueue.getLastElement());
     }
+
+    @Test
+    public void testCheckingLastElementOfEmptyQueueShouldThrowException() {
+        assertThrows(IllegalStateException.class, () -> circularQueue.getLastElement());
+    }
+
+    @Test
+    public void testCheckingFirstElementOfEmptyQueueShouldThrowException() {
+        assertThrows(IllegalStateException.class, () -> circularQueue.getFirstElement());
+    }
 }

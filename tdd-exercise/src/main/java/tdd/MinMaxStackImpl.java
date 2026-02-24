@@ -13,7 +13,7 @@ public class MinMaxStackImpl implements MinMaxStack{
 
     @Override
     public void push(int value) {
-
+        this.stack.push(value);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class MinMaxStackImpl implements MinMaxStack{
 
     @Override
     public int peek() {
-        return 0;
+        return this.stack.getFirst();
     }
 
     @Override

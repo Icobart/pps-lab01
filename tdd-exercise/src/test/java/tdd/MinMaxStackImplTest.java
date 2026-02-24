@@ -23,4 +23,12 @@ class MinMaxStackImplTest {
     public void testCheckInitialSize() {
         assertEquals(0, minMaxStack.size());
     }
+
+    @Test
+    public void testPushAndPeekNotEmptyStack() {
+        minMaxStack.push(1);
+        minMaxStack.push(2);
+        minMaxStack.push(3);
+        assertEquals(3, minMaxStack.peek());
+    }
 }

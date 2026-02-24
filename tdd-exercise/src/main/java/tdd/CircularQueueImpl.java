@@ -19,7 +19,17 @@ public class CircularQueueImpl implements CircularQueue{
     }
 
     @Override
+    public int dequeue() {
+        return this.queue.removeFirst();
+    }
+
+    @Override
     public int getLastElement() {
         return this.queue.getLast();
+    }
+
+    @Override
+    public int getFirstElement() {
+        return this.queue.getFirst();
     }
 }

@@ -18,10 +18,19 @@ public class CircularListTest {
     }
 
     @Test
-    public void testPushElementAndCheckLastElementInserted() {
+    public void testEnqueueElementAndCheckLastElementInserted() {
         circularQueue.enqueue(4);
         circularQueue.enqueue(5);
         circularQueue.enqueue(3);
         assertEquals(3, circularQueue.getLastElement());
+    }
+
+    @Test
+    public void testDequeueElementAndCheckNewOldestElement() {
+        circularQueue.enqueue(4);
+        circularQueue.enqueue(5);
+        circularQueue.enqueue(3);
+        circularQueue.dequeue();
+        assertEquals(5, circularQueue.getFirstElement());
     }
 }

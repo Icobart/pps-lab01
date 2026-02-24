@@ -17,5 +17,9 @@ public interface CircularQueue {
 
     void enqueue(int value);
 
+    int dequeue();
+
     int getLastElement();
+
+    int getFirstElement();
 }

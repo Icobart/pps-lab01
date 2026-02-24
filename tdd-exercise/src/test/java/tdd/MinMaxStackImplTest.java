@@ -57,4 +57,12 @@ class MinMaxStackImplTest {
         minMaxStack.push(4);
         assertEquals(3, minMaxStack.getMin());
     }
+
+    @Test
+    public void testGetMax() {
+        minMaxStack.push(3);
+        minMaxStack.push(5);
+        minMaxStack.push(4);
+        assertEquals(5, minMaxStack.getMax());
+    }
 }

@@ -50,7 +50,8 @@ public class MinMaxStackImpl implements MinMaxStack{
 
     @Override
     public int getMax() {
-        return 0;
+        checkException();
+        return this.stack.peek().currentMax();
     }
 
     @Override

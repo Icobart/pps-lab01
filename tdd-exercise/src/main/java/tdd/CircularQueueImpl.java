@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CircularQueueImpl implements CircularQueue{
 
-    private List<Integer> queue;
+    private final List<Integer> queue;
     private final int capacity;
 
     public CircularQueueImpl(int capacity) {

@@ -31,4 +31,12 @@ class MinMaxStackImplTest {
         minMaxStack.push(3);
         assertEquals(3, minMaxStack.peek());
     }
+
+    @Test
+    public void testPushAndPopNotEmptyStack() {
+        minMaxStack.push(1);
+        minMaxStack.push(2);
+        minMaxStack.push(3);
+        assertEquals(3, minMaxStack.pop());
+    }
 }
